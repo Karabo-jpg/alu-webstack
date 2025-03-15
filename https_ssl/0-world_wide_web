@@ -2,7 +2,7 @@
 # Print domains and subdomains
 
 print_domain_subdomain () {
-    dig +short "$1" | awk 'NR==1 { print "The subdomain " "'"$2"'" " is a A record and points to " $1 }'
+    dig "$1" +short | awk -v subdomain="$2" 'NR==1 { print "The subdomain " subdomain " is a A record and points to " $1 }'
 }
 
 if [ "$#" -eq 2 ]; then
